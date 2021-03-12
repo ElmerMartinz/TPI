@@ -31,7 +31,7 @@
                     <li class="nav-item dropdown" style="font-family: Montserrat, sans-serif;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="font-family: Montserrat, sans-serif;"><i class="fa fa-address-book"></i>Administracion</a>
                         <div class="dropdown-menu"><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="alcaldes.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Municipales</a>
                             <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="presidentes.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Presidenciales</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="diputados.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Diputados</a>
+                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="usuarios.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Diputados</a>
                         </div>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="login.html"><i class="fa fa-sign-out"></i><span>Salir</span></a></li>
@@ -53,12 +53,8 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6 text-nowrap">
-                                    <div id="dataTable_length" class="dataTables_length" aria-controls="dataTable"></div><button class="btn" style="height: 38px;width: auto;padding: 8px;background-color: transparent;color: #ffaaa8;"><i class="fa fa-sign-in" style="color: #ffaaa8;"></i>&nbsp;Agregar</button>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="text-md-right dataTables_filter" id="dataTable_filter"><label><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label></div>
-                                </div>
+                                <div class="col-md-6 text-nowrap"><button class="btn" style="height: 38px;width: auto;padding: 8px;background-color: transparent;color: #ffaaa8;"><i class="fa fa-sign-in" style="color: #ffaaa8;"></i>&nbsp;Agregar</button></div>
+                                <div class="col-md-6"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></div>
                             </div>
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                                 <table class="table my-0" id="dataTable">
@@ -68,6 +64,7 @@
                                             <th>Apellido</th>
                                             <th>Partido Politico</th>
                                             <th>Fecha de Nacimiento</th>
+                                            <th>Sexo</th>
                                             <th><i class="fa fa-cog" style="width: 30.7188px;height: 31px;font-size: 20px;"></i></th>
                                         </tr>
                                     </thead>
@@ -77,6 +74,7 @@
                                             <td>Handall</td>
                                             <td>ARENA</td>
                                             <td>2008/11/28</td>
+                                            <td><i class="fa fa-male" style="width: 30.7188px;height: 31px;font-size: 20px;"></i><i class="fa fa-female" style="width: 30.7188px;height: 31px;font-size: 20px;"></i></td>
                                             <td>&nbsp;&nbsp;<a href="#"><i class="fa fa-edit" style="color: #28a745;"></i>&nbsp;<i class="fa fa-trash-o" style="color: #dc3545;"></i></a></td>
                                         </tr>
                                     </tbody>
