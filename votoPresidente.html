@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Dashboard - Brand</title>
+    <link rel="icon" type="image/png" sizes="153x160" href="assets/img/avatars/Logo_de_Gobierno_versiones-01-01.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
@@ -22,16 +24,12 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="votoAlcalde.html"><i class="fas fa-table"></i><span>Votar</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="estadisticas.html"><i class="fas fa-tachometer-alt"></i><span>Estadisticas</span></a></li>
-                    <li class="nav-item dropdown" style="font-family: Montserrat, sans-serif;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="font-family: Montserrat, sans-serif;"><i class="fa fa-address-book"></i>Administracion</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="alcaldes.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Municipales</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="presidentes.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Presidenciales</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="usuarios.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Diputados</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="usuarios.html"><i class="fas fa-user-circle"></i>&nbsp;Usuarios</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fa fa-power-off"></i><span>Salir</span></a></li>
+                    <li class="nav-item" id="navVotos"><a class="nav-link" href="votoAlcalde.html"><i class="fas fa-table"></i><span>Votar</span></a></li>
+                    <li class="nav-item" id="navEstadisticas"><a class="nav-link" href="estadisticas.html"><i class="fas fa-tachometer-alt"></i><span>Estadisticas</span></a></li>
+                    <li class="nav-item" id="navAdminUser"><a class="nav-link" href="usuarios.html"><i class="fa fa-users"></i><span>Administrar Usuarios</span></a></li>
+                    <li class="nav-item" id="navAdminAlcalde"><a class="nav-link" href="alcaldes.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Alcalde</span></a></li>
+                    <li class="nav-item" id="navAdminPresidente"><a class="nav-link" href="presidentes.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Presidente</span></a></li>
+                    <li class="nav-item" id="navAdminDiputado"><a class="nav-link" href="diputados.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Diputados</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -39,50 +37,24 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid">
-                        <ul class="navbar-nav flex-nowrap ml-auto"></ul><span>USUARIO</span>
-                    </div>
+                    <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button></div>
                 </nav>
-                <h3 class="text-dark mb-4">&nbsp;Presidente</h3>
-                <div class="container-fluid">
-                    <div class="d-sm-flex justify-content-between align-items-center mb-4"></div>
+                <h2 class="text-center text-dark mb-4" style="font-family: 'Alfa Slab One', serif;">&nbsp;Presidente</h2>
+                <div class="container-fluid" id="AdminVotoPresidente">
                     <div class="row">
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-left-primary">
-                                <div class="card-body"><img src="assets/img/arena.png" style="width: 142px;height: 89.5781px;margin: 0px 0px 0px 50px;">
-                                    <div class="col"><span>ALIANZA REPUBLICANA NACIONALISTA</span></div><img src="assets/img/candidatoH.png" style="width: 100px;height: 94.594px;margin: 0px 0px 0px 50px;">
-                                    <div class="col"><span>SHAFICK H.</span></div><input type="checkbox" style="width: 200px;height: 38px;background: var(--red);">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-left-primary">
-                                <div class="card-body"><img src="assets/img/fmln.png" style="width: 142px;height: 89.5781px;margin: 0px 0px 0px 50px;">
-                                    <div class="col"><span>FRENTE FARABUNDO MARTI PARA LA LIBERACION NACIONAL</span></div><img src="assets/img/candidatoH.png" style="width: 100px;height: 94.594px;margin: 0px 0px 0px 50px;">
-                                    <div class="col"><span>NORMAN Q.</span></div><input type="checkbox" style="width: 200px;height: 38px;background: var(--red);">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-left-primary">
-                                <div class="card-body"><img src="assets/img/gana.png" style="width: 142px;height: 89.5781px;margin: 0px 0px 0px 50px;">
-                                    <div class="col"><span>GRAN ALIANZA PARA LA UNIDAD NACIONAL</span></div><img src="assets/img/candidataM.jpg" style="width: 100px;height: 94.594px;margin: 0px 0px 0px 50px;">
-                                    <div class="col"><span>NIDIA D.</span></div><input type="checkbox" style="width: 200px;height: 38px;background: var(--red);">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-xl-3 mb-4">
-                            <div class="card shadow border-left-primary">
-                                <div class="card-body" style="height: 340.156px;"><img src="assets/img/ni.png" style="width: 142px;height: 89.5781px;margin: 0px 0px 0px 50px;">
-                                    <div class="col"><span>NUEVAS IDEAS</span></div><img src="assets/img/candidatoH.png" style="width: 100px;height: 94.594px;margin: 0px 0px 0px 50px;">
-                                    <div class="col"><span>RODOLFO P.</span></div><input type="checkbox" style="width: 200px;height: 38px;background: var(--red);">
+                        <div class="col-md-6 col-xl-3 mb-4" v-for="presi in presidentes">
+                            <div class="card shadow border-left-primary" style="width: 220px;">
+                                <div class="card-body" style="width: 220px;"><img src="assets/img/arena.png" style="width: 100px;height: 75px;margin: 0px 0px 0px 50px;" v-show="presi.partido.idPartido==1"><img src="assets/img/cd.png" style="width: 100px;height: 75px;margin: 0px 0px 0px 50px;" v-show="presi.partido.idPartido==2"><img src="assets/img/fmln.png" style="width: 100px;height: 75px;margin: 0px 0px 0px 50px;" v-show="presi.partido.idPartido==3"><img src="assets/img/gana.png" style="width: 100px;height: 75px;margin: 0px 0px 0px 50px;" v-show="presi.partido.idPartido==4"><img src="assets/img/ni.png" style="width: 100px;height: 75px;margin: 0px 0px 0px 50px;" v-show="presi.partido.idPartido==5"><img src="assets/img/pcn.png" style="width: 100px;height: 75px;margin: 0px 0px 0px 50px;" v-show="presi.partido.idPartido==6">
+                                    <div class="col"><span class="text-center d-xl-flex justify-content-xl-center" style="font-size: 14px;text-align: center;">{{presi.partido.nombre}}</span></div><img src="assets/img/candidatoH.png" style="width: 100px;height: 94.594px;margin: 0px 0px 0px 50px;" v-show="presi.sexo==&quot;m&quot;"><img src="assets/img/candidataM.jpg" style="width: 100px;height: 94.594px;margin: 0px 0px 0px 50px;" v-show="presi.sexo==&quot;f&quot;">
+                                    <div class="col"><span class="text-center d-xl-flex justify-content-xl-center" style="font-size: 14px;text-align: center;">{{presi.nombre +" "+ presi.apellido}}<br></span></div>
+                                    <div class="col offset-xl-4" style="width: auto;"><input class="d-xl-flex justify-content-xl-start" type="checkbox" data-toggle="tooltip" data-bss-tooltip="" style="width: 30px;height: 30px;background: var(--red);color: var(--red);text-align: center;" title="ELEGIR"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col d-xl-flex justify-content-xl-end"><a class="btn btn-danger btn-lg text-capitalize border rounded-pill d-block float-right" role="button" href="votoDiputado.html">VOTAR</a></div>
                 </div>
             </div>
-            <div class="col"><a class="btn btn-danger btn-lg text-capitalize border rounded-pill d-block float-right" role="button" href="votoDiputado.html">VOTAR</a></div>
             <footer class="bg-white sticky-footer">
                 <div class="container my-auto">
                     <div class="text-center my-auto copyright"><span>Copyright © TPI 2021</span></div>
@@ -94,9 +66,15 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vue-alcaldes.js"></script>
+    <script src="assets/js/vue-diputados.js"></script>
+    <script src="assets/js/vue-login.js"></script>
+    <script src="assets/js/vue-presidentes.js"></script>
+    <script src="assets/js/vue-usuarios.js"></script>
+    <script src="assets/js/vue-voto.js"></script>
 </body>
 
 </html>

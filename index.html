@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Dashboard - Brand</title>
+    <link rel="icon" type="image/png" sizes="153x160" href="assets/img/avatars/Logo_de_Gobierno_versiones-01-01.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
@@ -22,25 +24,19 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="votoAlcalde.html"><i class="fas fa-table"></i><span>Votar</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="estadisticas.html"><i class="fas fa-tachometer-alt"></i><span>Estadisticas</span></a></li>
-                    <li class="nav-item dropdown" style="font-family: Montserrat, sans-serif;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="font-family: Montserrat, sans-serif;"><i class="fa fa-address-book"></i>Administracion</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="alcaldes.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Municipales</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="presidentes.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Presidenciales</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="usuarios.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Diputados</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="usuarios.html"><i class="fas fa-user-circle"></i>&nbsp;Usuarios</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fa fa-power-off"></i><span>Salir</span></a></li>
+                    <li class="nav-item" id="navVotos"><a class="nav-link" href="votoAlcalde.html"><i class="fas fa-table"></i><span>Votar</span></a></li>
+                    <li class="nav-item" id="navEstadisticas"><a class="nav-link" href="estadisticas.html"><i class="fas fa-tachometer-alt"></i><span>Estadisticas</span></a></li>
+                    <li class="nav-item" id="navAdminUser"><a class="nav-link" href="usuarios.html"><i class="fa fa-users"></i><span>Administrar Usuarios</span></a></li>
+                    <li class="nav-item" id="navAdminAlcalde"><a class="nav-link" href="alcaldes.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Alcalde</span></a></li>
+                    <li class="nav-item" id="navAdminPresidente"><a class="nav-link" href="presidentes.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Presidente</span></a></li>
+                    <li class="nav-item" id="navAdminDiputado"><a class="nav-link" href="diputados.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Diputados</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
             <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                <div class="container-fluid">
-                    <ul class="navbar-nav flex-nowrap ml-auto"></ul><span>USUARIO</span>
-                </div>
+                <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button></div>
             </nav>
             <div id="content" style="background: url(&quot;assets/img/avatars/1450083573_743332_1450084825_noticia_normal.jpg&quot;) no-repeat, #6c0202;background-size: cover, auto;">
                 <h1 class="text-center" style="margin: 200px 0px 8px 0px;color: rgb(0,0,0);font-size: 49px;text-align: center;">Bienvenidos al sistema&nbsp; web de elecciones!</h1>
@@ -56,9 +52,15 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vue-alcaldes.js"></script>
+    <script src="assets/js/vue-diputados.js"></script>
+    <script src="assets/js/vue-login.js"></script>
+    <script src="assets/js/vue-presidentes.js"></script>
+    <script src="assets/js/vue-usuarios.js"></script>
+    <script src="assets/js/vue-voto.js"></script>
 </body>
 
 </html>

@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Table - Brand</title>
+    <link rel="icon" type="image/png" sizes="153x160" href="assets/img/avatars/Logo_de_Gobierno_versiones-01-01.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
@@ -22,66 +24,181 @@
                 </a>
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item dropdown" style="font-family: Montserrat, sans-serif;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="font-family: Montserrat, sans-serif;"><i class="fas fa-table"></i>Votar</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="votoAlcalde.html"><i class="fa fa-address-card-o"></i>&nbsp;Consejos Municipales</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="votoPresidente.html"><i class="fa fa-address-card-o"></i>&nbsp;Presidenciales</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="estadisticas.html"><i class="fas fa-tachometer-alt"></i><span>Estadisticas</span></a></li>
-                    <li class="nav-item dropdown" style="font-family: Montserrat, sans-serif;"><a class="dropdown-toggle nav-link" aria-expanded="false" data-toggle="dropdown" href="#" style="font-family: Montserrat, sans-serif;"><i class="fa fa-address-book"></i>Administracion</a>
-                        <div class="dropdown-menu"><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="alcaldes.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Municipales</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="presidentes.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Presidenciales</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" style="color: rgb(33,37,41);background-color: transparent;" href="usuarios.html"><i class="fas fa-user-circle"></i>&nbsp;Candidatos Diputados</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="login.html"><i class="fa fa-sign-out"></i><span>Salir</span></a></li>
+                    <li class="nav-item" id="navVotos"><a class="nav-link" href="votoAlcalde.html"><i class="fas fa-table"></i><span>Votar</span></a></li>
+                    <li class="nav-item" id="navEstadisticas"><a class="nav-link" href="estadisticas.html"><i class="fas fa-tachometer-alt"></i><span>Estadisticas</span></a></li>
+                    <li class="nav-item" id="navAdminUser"><a class="nav-link" href="usuarios.html"><i class="fa fa-users"></i><span>Administrar Usuarios</span></a></li>
+                    <li class="nav-item" id="navAdminAlcalde"><a class="nav-link" href="alcaldes.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Alcalde</span></a></li>
+                    <li class="nav-item" id="navAdminPresidente"><a class="nav-link active" href="presidentes.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Presidente</span></a></li>
+                    <li class="nav-item" id="navAdminDiputado"><a class="nav-link" href="diputados.html"><i class="fa fa-user-o"></i><span>Administrar Candidatos Diputados</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
         </nav>
         <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
+            <div>
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid">
-                        <ul class="navbar-nav flex-nowrap ml-auto"></ul><span>USUARIO</span>
-                    </div>
+                    <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button></div>
                 </nav>
-                <div class="container-fluid">
+                <div class="container-fluid" id="AdminPresidentes">
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 font-weight-bold">Información del candidato a Presidente</p>
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap" style="padding: 7px;">
+                                    <p class="text-primary m-0 font-weight-bold" style="width: auto;height: 24px;text-align: left;">Información de candidatos a Presidente</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-right"><input class="form-control-sm float-right form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Search" v-model="textoBusqueda" style="width: 200px;height: 38px;"><a class="btn btn-sm text-left float-right" role="button" data-toggle="modal" data-bss-tooltip="" style="height: 38px;width: auto;padding: 8px;background-color: transparent;color: var(--blue);font-size: 16px;text-align: left;" v-on:click="mostrarAgregar" title="AGREGAR"><i class="fa fa-sign-in" style="color: var(--blue);"></i>&nbsp;Nuevo</a></div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6 text-nowrap"><button class="btn" style="height: 38px;width: auto;padding: 8px;background-color: transparent;color: #ffaaa8;"><i class="fa fa-sign-in" style="color: #ffaaa8;"></i>&nbsp;Agregar</button></div>
-                                <div class="col-md-6"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></div>
-                            </div>
-                            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                                <table class="table my-0" id="dataTable">
+                            <div class="table-responsive">
+                                <table class="table">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
                                             <th>Apellido</th>
-                                            <th>Partido Politico</th>
+                                            <th>Partido</th>
                                             <th>Fecha de Nacimiento</th>
                                             <th>Sexo</th>
-                                            <th><i class="fa fa-cog" style="width: 30.7188px;height: 31px;font-size: 20px;"></i></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td><img class="rounded-circle mr-2" width="30" height="30" src="assets/img/candidatoH.png">Shafick</td>
-                                            <td>Handall</td>
-                                            <td>ARENA</td>
-                                            <td>2008/11/28</td>
-                                            <td><i class="fa fa-male" style="width: 30.7188px;height: 31px;font-size: 20px;"></i><i class="fa fa-female" style="width: 30.7188px;height: 31px;font-size: 20px;"></i></td>
-                                            <td>&nbsp;&nbsp;<a href="#"><i class="fa fa-edit" style="color: #28a745;"></i>&nbsp;<i class="fa fa-trash-o" style="color: #dc3545;"></i></a></td>
+                                        <tr v-for="(presi, index) in presidentes" v-show="buscar(index)" v-on:click="presidenteSelected=index;" v-bind:class="{ 'font-weight-bold' : presidenteSelected==index }">
+                                            <td><img class="rounded-circle mr-2" width="30" height="30" src="assets/img/candidatoH.png" v-show="presi.sexo==&quot;m&quot;"><img class="rounded-circle mr-2" width="30" height="30" src="assets/img/candidataM.jpg" v-show="presi.sexo==&quot;f&quot;">{{presi.nombre}}</td>
+                                            <td>{{presi.apellido}}<br></td>
+                                            <td>{{presi.partido.nombre}}<br></td>
+                                            <td>{{presi.fechaNac}}<br></td>
+                                            <td><i class="fa fa-female" data-toggle="tooltip" data-bss-tooltip="" style="font-size: 25px;color: var(--pink);" v-show="presi.sexo==&quot;f&quot;" title="FEMENINO"></i><i class="fa fa-male" data-toggle="tooltip" data-bss-tooltip="" style="font-size: 25px;color: var(--blue);" v-show="presi.sexo==&quot;m&quot;" title="MASCULINO"></i><br></td>
+                                            <td>&nbsp;<a data-toggle="modal" data-bss-tooltip="" style="padding: 5px;" title="MODIFICAR" v-on:click="mostrarModificar"><i class="fa fa-edit" style="color: #28a745;padding: 0px;"></i>&nbsp;</a><a data-toggle="modal" data-bss-tooltip="" style="padding: 5px;" title="ELIMINAR" v-on:click="mostrarEliminar">&nbsp;<i class="fa fa-trash-o" style="color: #dc3545;"></i></a>&nbsp;</td>
                                         </tr>
                                     </tbody>
-                                    <tfoot>
-                                        <tr></tr>
-                                    </tfoot>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="modalAgregar" style="color: #f0f9ff;">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="color: var(--blue);background: rgb(78, 115, 223);">
+                                    <h4 class="modal-title" style="color: #ffffff;">Agregar Candidato Presidente</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body" style="background: rgb(248,249,252);">
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: rgb(255,255,255);">Nombre:</span></div><input class="form-control" type="text">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: var(--white);background: var(--blue);">Apellido:</span></div><input class="form-control" type="text">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: var(--white);">DUI:</span></div><input class="form-control" type="number">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: var(--white);">Fecha Nac:</span></div><input class="form-control" type="text">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;width: 224px;padding-right: 0px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Sexo</span></div><select class="form-control" style="width: auto;">
+                                            <option value="m" selected="">MASCULINO</option>
+                                            <option value="f">FEMENINO</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;padding-left: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Partido Politico&nbsp;</span></div><select class="form-control">
+                                            <option value="1">ARENA</option>
+                                            <option value="2">CD</option>
+                                            <option value="3">FMLN</option>
+                                            <option value="4">GANA</option>
+                                            <option value="5">NI</option>
+                                            <option value="6">PCN</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="background: var(--light);"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal" style="background: var(--secondary);">Cancelar</button><a class="btn btn-primary btn-sm" role="button" data-dismiss="modal" style="margin: 0px 0px 0px 10px;background: var(--blue);" data-toggle="modal">AGREGAR</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="modalModificar" style="color: #f0f9ff;">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="color: var(--blue);background: var(--green);">
+                                    <h4 class="modal-title" style="color: #ffffff;">Modificar Candidato Presidente</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body" style="background: rgb(248,249,252);">
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--green);color: rgb(255,255,255);">Nombre:</span></div><input class="form-control" type="text" v-model="this.presidentes[this.presidenteSelected].nombre">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: var(--white);background: var(--green);">Apellido:</span></div><input class="form-control" type="text" v-model="this.presidentes[this.presidenteSelected].apellido">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--green);color: var(--white);">DUI:</span></div><input class="form-control" type="number" v-model="this.presidentes[this.presidenteSelected].dui">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--green);color: var(--white);">Fecha Nac:</span></div><input class="form-control" type="text" v-model="this.presidentes[this.presidenteSelected].fechaNac">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;width: 224px;padding-right: 0px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--green);color: var(--white);">Sexo</span></div><select class="form-control" style="width: auto;" v-model="this.presidentes[this.presidenteSelected].sexo">
+                                            <option value="m" selected="">MASCULINO</option>
+                                            <option value="f">FEMENINO</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;padding-left: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--green);color: var(--white);">Partido Politico&nbsp;</span></div><select class="form-control" v-model="this.presidentes[this.presidenteSelected].partido.idPartido">
+                                            <option value="1">ARENA</option>
+                                            <option value="2">CD</option>
+                                            <option value="3">FMLN</option>
+                                            <option value="4">GANA</option>
+                                            <option value="5">NI</option>
+                                            <option value="6">PCN</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="background: var(--light);"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal" style="background: var(--secondary);">Cancelar</button><a class="btn btn-primary btn-sm" role="button" data-dismiss="modal" style="margin: 0px 0px 0px 10px;background: var(--green);" data-toggle="modal">MODIFICAR</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="modalEliminar" style="color: #f0f9ff;">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="color: var(--blue);background: var(--red);">
+                                    <h4 class="modal-title" style="color: #ffffff;">Eliminar Usuario</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body" style="background: rgb(248,249,252);">
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--red);color: rgb(255,255,255);">Nombre:</span></div><input class="form-control" type="text" v-model="this.presidentes[this.presidenteSelected].nombre" style="font-family: Nunito, sans-serif;background: rgb(248,249,252);" disabled="">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: rgb(255,255,255);background: var(--red);">Apellido:</span></div><input class="form-control" type="text" v-model="this.presidentes[this.presidenteSelected].apellido" style="background: rgb(248,249,252);" disabled="">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--red);color: var(--white);">DUI:</span></div><input class="form-control" type="text" v-model="this.presidentes[this.presidenteSelected].dui" style="background: rgb(248,249,252);" disabled="">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: rgb(255,255,255);background: var(--red);">Sexo:</span></div><input class="form-control" type="text" v-show="this.presidentes[this.presidenteSelected].sexo==&quot;m&quot;" placeholder="MASCULINO" disabled="" style="background: rgb(248,249,252);"><input class="form-control" type="text" v-show="this.presidentes[this.presidenteSelected].sexo==&quot;f&quot;" placeholder="FEMENINO" disabled="" style="background: rgb(248,249,252);">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--red);color: rgb(255,255,255);">Partido P. :</span></div><input class="form-control" type="text" v-model="this.presidentes[this.presidenteSelected].partido.nombre" style="background: rgb(248,249,252);" disabled="">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="background: var(--light);"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal" style="background: var(--secondary);">Cancelar</button><a class="btn btn-primary btn-sm" role="button" data-dismiss="modal" style="margin: 0px 0px 0px 10px;background: #c30f04;" data-toggle="modal">Eliminar</a></div>
                             </div>
                         </div>
                     </div>
@@ -98,9 +215,15 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vue-alcaldes.js"></script>
+    <script src="assets/js/vue-diputados.js"></script>
+    <script src="assets/js/vue-login.js"></script>
+    <script src="assets/js/vue-presidentes.js"></script>
+    <script src="assets/js/vue-usuarios.js"></script>
+    <script src="assets/js/vue-voto.js"></script>
 </body>
 
 </html>

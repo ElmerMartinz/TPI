@@ -5,8 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Dashboard - Brand</title>
+    <link rel="icon" type="image/png" sizes="153x160" href="assets/img/avatars/Logo_de_Gobierno_versiones-01-01.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
@@ -17,9 +19,10 @@
     <div class="container">
         <div class="row centerit">
             <div class="col-md-12 letdown">
-                <div class="formcustom" style="background-color:rgba(170,159,159,0.49);"><i class="fa fa-user" id="user" style="font-size:60px;"></i>
-                    <div class="form-group" style="height:60px;"><input type="text" class="in" placeholder="usuario"></div>
-                    <div class="form-group"><input type="password" style="height: 30px;margin: 20px 50px 0px;" placeholder="Password"></div><a class="btn btn-lg border rounded-pill float-none" role="button" href="index.html" style="background: #ffffff;"><i class="fa fa-sign-out"></i></a>
+                <div id="AdminApp" class="formcustom" style="background: var(--blue);max-width: 400px;height: 340px;"><i class="fa fa-user" id="user" style="font-size: 60px;color: rgb(255,255,255);"></i>
+                    <div class="form-group" style="height:60px;"><input type="text" class="in" placeholder="DUI" v-model="user.dui"></div>
+                    <div class="form-group"><input type="password" class="in" placeholder="Password" v-model="user.password"></div><a class="btn btn-lg border rounded-pill float-none" role="button" style="background: #ffffff;" v-on:click="login"><i class="fa fa-sign-out"></i></a>
+                    <div class="alert alert-danger collapse" role="alert" id="miAlerta" style="width: auto;margin: 0px;padding-top: 12px;padding-right: 12px;padding-bottom: 12px;padding-left: 12px;"><span style="font-size: 14px;text-align: center;"><strong>{{ alerta.titulo }} :</strong>&nbsp;{{ alerta.mensaje }}.</span><i class="fa fa-close close" v-on:click="cerrarAlerta();"></i></div>
                 </div>
             </div>
         </div>
@@ -28,9 +31,15 @@
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
-    <script src="assets/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/theme.js"></script>
+    <script src="assets/js/vue-alcaldes.js"></script>
+    <script src="assets/js/vue-diputados.js"></script>
+    <script src="assets/js/vue-login.js"></script>
+    <script src="assets/js/vue-presidentes.js"></script>
+    <script src="assets/js/vue-usuarios.js"></script>
+    <script src="assets/js/vue-voto.js"></script>
 </body>
 
 </html>
