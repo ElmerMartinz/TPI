@@ -8,10 +8,12 @@
     <link rel="icon" type="image/png" sizes="153x160" href="assets/img/avatars/Logo_de_Gobierno_versiones-01-01.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="assets/css/Minimalistic--Responsive-Login.css">
 </head>
 
@@ -37,79 +39,105 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button></div>
+                    <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a>
+                        <p class="d-xl-flex align-items-xl-end" id="idDepMun" style="margin-right: 0px;padding-left: 0px;margin-left: 100px;color: var(--indigo);font-size: 20px;font-family: 'Alfa Slab One', serif;">Paragraph</p><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button>
+                    </div>
                 </nav>
-                <div class="container-fluid">
+                <div class="container-fluid" id="adminEstadisticas">
                     <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                        <h3 class="text-dark mb-0">Estadisticas</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i>&nbsp;Generar Reporte</a>
+                        <h3 class="text-dark mb-0">Estadisticas</h3>
                     </div>
                     <div class="row">
-                        <div class="col-lg-5 col-xl-4">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="card shadow border-left-primary">
-                                        <div class="card-body">
-                                            <div class="row align-items-center no-gutters">
-                                                <div class="col mr-2">
-                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"></div>
-                                                    <div class="text-dark font-weight-bold h5 mb-0"><span>Elecciones de Consejos Municipales</span></div>
-                                                </div>
-                                                <div class="col-auto"><i class="fas fa-warehouse fa-2x text-gray-300"></i></div>
-                                            </div>
+                        <div class="col-lg-5 col-xl-4" v-on:click="tipoEstadisticas=1">
+                            <div class="card shadow border-left-primary" data-toggle="tooltip" data-bss-tooltip="" v-on:click="cargarDatos()" title="DOBLE CLICK PARA MOSTRAR DETALLES">
+                                <div class="card-body" style="height: 110px;">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span>Elecciones de Concejos Municipales</span></div>
                                         </div>
-                                    </div>
-                                    <div class="card shadow border-left-success">
-                                        <div class="card-body">
-                                            <div class="row align-items-center no-gutters">
-                                                <div class="col mr-2">
-                                                    <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"></div>
-                                                    <div class="text-dark font-weight-bold h5 mb-0"><span>Elecciones Presidenciales</span></div>
-                                                </div>
-                                                <div class="col-auto"><i class="fas fa-landmark fa-2x text-gray-300"></i></div>
-                                            </div>
-                                        </div>
+                                        <div class="col-auto"><i class="fas fa-user-alt fa-2x text-gray-300"></i></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-xl-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header d-flex justify-content-between align-items-center">
-                                    <h6 class="text-primary font-weight-bold m-0">Porcentajes</h6>
-                                    <div class="dropdown no-arrow"><button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-toggle="dropdown" type="button"></button>
-                                        <div class="dropdown-menu shadow dropdown-menu-right animated--fade-in">
-                                            <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" href="#">&nbsp;Action</a><a class="dropdown-item" href="#">&nbsp;Another action</a>
-                                            <div class="dropdown-divider"></div><a class="dropdown-item" href="#">&nbsp;Something else here</a>
+                        <div class="col-lg-5 col-xl-4" v-on:click="tipoEstadisticas=2">
+                            <div class="card shadow border-left-success" data-toggle="tooltip" data-bss-tooltip="" v-on:click="cargarDatos()" title="DOBLE CLICK PARA MOSTRAR DETALLES">
+                                <div class="card-body" style="height: 110px;">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span>Elecciones&nbsp;<br>Presidenciales<br></span></div>
                                         </div>
+                                        <div class="col-auto"><i class="fas fa-user-tie fa-2x text-gray-300"></i></div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="chart-area"><canvas data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false},&quot;title&quot;:{}}}"></canvas></div>
-                                    <div class="text-center small mt-4"><span class="mr-2"><i class="fas fa-circle text-primary"></i>&nbsp;PartidoA</span><span class="mr-2"><i class="fas fa-circle text-success"></i>&nbsp;Partido B</span><span class="mr-2"><i class="fas fa-circle text-info"></i>&nbsp;Partido C</span></div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-5 col-xl-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="text-primary font-weight-bold m-0">votos por partido</h6>
+                        <div class="col-lg-5 col-xl-4" v-on:click="tipoEstadisticas=3">
+                            <div class="card shadow border-left-warning" data-toggle="tooltip" data-bss-tooltip="" v-on:click="cargarDatos()" title="DOBLE CLICK PARA MOSTRAR DETALLES">
+                                <div class="card-body" style="height: 110px;">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col mr-2">
+                                            <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"></div>
+                                            <div class="text-dark font-weight-bold h5 mb-0"><span class="text-break">Elecciones Diputados Asamblea Legislativa</span></div>
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-user-friends fa-2x text-gray-300"></i></div>
+                                    </div>
                                 </div>
-                                <div class="card-body">
-                                    <h4 class="small font-weight-bold">PARTIDO A<span class="float-right">20%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="sr-only">20%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px;" v-if="mostrarEstadisticas== true">
+                        <p class="text-center" style="color: var(--blue);font-weight: bold;font-size: 24px;line-height: auto;margin-bottom: 0px;" v-if="this.muestra== 3">Elecciones Diputados Asamblea Legislativa</p>
+                        <p class="text-center" style="color: var(--blue);font-weight: bold;font-size: 24px;line-height: auto;margin-bottom: 0px;" v-if="this.muestra == 2">Elecciones Presidente de la Republica<br></p>
+                        <p class="text-center" style="color: var(--blue);font-weight: bold;font-size: 24px;line-height: auto;margin-bottom: 0px;" v-if="this.muestra == 1">Elecciones Concejo Municipal<br></p>
+                        <div class="row">
+                            <div class="col">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Nombre</th>
+                                                <th>Apellido</th>
+                                                <th>VOTOS</th>
+                                                <th>Partido</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr v-for="dato in datos">
+                                                <td><img class="rounded-circle mr-2" width="30" height="30" src="assets/img/candidatoH.png" v-show="dato.idUsuario.sexo==&quot;M&quot;"><img class="rounded-circle mr-2" width="30" height="30" src="assets/img/candidataM.jpg" v-show="dato.idUsuario.sexo==&quot;F&quot;"></td>
+                                                <td>{{dato.idUsuario.nombres}}</td>
+                                                <td>{{dato.idUsuario.apellidos}}<br></td>
+                                                <td>{{dato.votos}}<br></td>
+                                                <td>{{dato.idPartido.nombre}}<br></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="text-primary font-weight-bold m-0" v-on:click="prueba">Porcentaje de Votos</h6>
                                     </div>
-                                    <h4 class="small font-weight-bold">P<strong>ARTIDO</strong><br>&nbsp;B<span class="float-right">40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="sr-only">40%</span></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">PARTIDO C</h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="sr-only">60%</span></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold">PARTIDO D<span class="float-right">80%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="sr-only">80%</span></div>
+                                    <div class="card-body">
+                                        <div class="row" v-for="datito in datosEstadisticos" style="height: 53px;">
+                                            <div class="col">
+                                                <h4 class="small font-weight-bold" style="font-size: 15.8px;">{{datito.nombre}}<span class="float-right">{{datito.porcentaje}}%</span></h4>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="height: 53px;">
+                                            <div class="col">
+                                                <h4 class="small font-weight-bold" style="color: var(--blue);font-weight: bold;font-size: 14.8px;">POBLACION QUE HA EJERCIDO EL VOTO<span class="float-right" id="idSpanPorcentaje" style="margin-right: 0px;margin-left: 10px;">20%</span><span class="float-right" id="idUsuariosContadorTrue">20%</span></h4>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="height: 53px;">
+                                            <div class="col">
+                                                <h4 class="small font-weight-bold" style="color: var(--success);font-size: 16.8px;">POBLACION TOTAL&nbsp;<span class="float-right" id="idUsuariosContador">20%</span></h4>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -126,17 +154,18 @@
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="assets/js/vue-alcaldes.js"></script>
-    <script src="assets/js/vue-diputados.js"></script>
-    <script src="assets/js/vue-login.js"></script>
-    <script src="assets/js/vue-presidentes.js"></script>
-    <script src="assets/js/vue-usuarios.js"></script>
-    <script src="assets/js/vue-voto.js"></script>
+    <script src="assets/js/vueAlcaldes.js"></script>
+    <script src="assets/js/vueDiputados.js"></script>
+    <script src="assets/js/vueEstadisticas.js"></script>
+    <script src="assets/js/vueLogin.js"></script>
+    <script src="assets/js/vuePresidentes.js"></script>
+    <script src="assets/js/vueUsuarios.js"></script>
+    <script src="assets/js/vueVoto.js"></script>
 </body>
 
 </html>

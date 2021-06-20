@@ -8,10 +8,12 @@
     <link rel="icon" type="image/png" sizes="153x160" href="assets/img/avatars/Logo_de_Gobierno_versiones-01-01.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="assets/css/Minimalistic--Responsive-Login.css">
 </head>
 
@@ -37,80 +39,160 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div id="content">
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button></div>
+                    <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a>
+                        <p class="d-xl-flex align-items-xl-end" id="idDepMun" style="margin-right: 0px;padding-left: 0px;margin-left: 100px;color: var(--indigo);font-size: 20px;font-family: 'Alfa Slab One', serif;">Paragraph</p><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button>
+                    </div>
                 </nav>
-                <h2 class="text-center text-dark mb-4" style="font-family: 'Alfa Slab One', serif;">&nbsp;Diputados</h2>
-                <div class="container-fluid" id="AdminVotoDiputado">
+                <div class="container-fluid" id="AdminVotoDiputado" style="width: 1024px;">
+                    <div style="padding: 0px 24px;margin-left: 0px;width: 1024px;">
+                        <h2 class="text-center text-dark d-xl-flex justify-content-xl-center mb-4" style="font-family: 'Alfa Slab One', serif;font-size: 31px;width: 1024px;">&nbsp;Elección de Diputados y Diputadas a Asamblea Legislativa</h2>
+                        <h4 class="text-center text-dark d-xl-flex justify-content-xl-center mb-4" style="font-family: 'Alfa Slab One', serif;font-size: 22px;margin: 0px;margin-bottom: 0px;" v-if="this.mostrarPartidos==true">Voto por Bandera</h4>
+                    </div>
+                    <div class="row float-left d-xl-flex justify-content-xl-start" style="width: 1130px;" v-if="this.mostrarPartidos==true">
+                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;" v-if="partidos.ni==1">
+                            <div class="card shadow border-left-info" data-toggle="tooltip" data-bss-tooltip="" style="width: 200px;height: 100px;padding-bottom: 0px;margin-top: 5px;margin-bottom: 5px;" v-on:click="partidoSelected=1">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 160px;padding-right: 0px;padding-left: 0px;padding-top: 5px;padding-bottom: 5px;" title="CLICK PARA VOTAR" v-on:click="mostrarModalBandera"><img src="assets/img/ni.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 50px;margin-top: 10px;margin-right: 0px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;margin-left: 21px;"><strong>NUEVAS IDEAS</strong></span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;" v-if="partidos.arena==1">
+                            <div class="card shadow border-left-primary" data-toggle="tooltip" data-bss-tooltip="" style="width: 200px;height: 100px;padding-bottom: 0px;margin-top: 5px;margin-bottom: 5px;" v-on:click="partidoSelected=2">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 160px;padding-right: 0px;padding-left: 0px;padding-top: 5px;padding-bottom: 5px;" title="CLICK PARA VOTAR" v-on:click="mostrarModalBandera"><img src="assets/img/arena.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 50px;margin-top: 10px;margin-right: 0px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;margin-left: 21px;">ARENA</span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;" v-if="partidos.fmln==1">
+                            <div class="card shadow border-left-danger" data-toggle="tooltip" data-bss-tooltip="" style="width: 200px;height: 100px;padding-bottom: 0px;margin-top: 5px;margin-bottom: 5px;" v-on:click="partidoSelected=3">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 160px;padding-right: 0px;padding-left: 0px;padding-top: 5px;padding-bottom: 5px;" title="CLICK PARA VOTAR" v-on:click="mostrarModalBandera"><img src="assets/img/fmln.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 50px;margin-top: 10px;margin-right: 0px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;margin-left: 21px;"><strong>FMLN</strong></span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;" v-if="partidos.gana==1">
+                            <div class="card shadow border-left-info" data-toggle="tooltip" data-bss-tooltip="" style="width: 200px;height: 100px;padding-bottom: 0px;margin-top: 5px;margin-bottom: 5px;" v-on:click="partidoSelected=4">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 160px;padding-right: 0px;padding-left: 0px;padding-top: 5px;padding-bottom: 5px;" title="CLICK PARA VOTAR" v-on:click="mostrarModalBandera"><img src="assets/img/gana.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 50px;margin-top: 10px;margin-right: 0px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;margin-left: 21px;"><strong>GANA</strong></span></div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;" v-if="partidos.pdc==1">
+                            <div class="card shadow border-left-success" data-toggle="tooltip" data-bss-tooltip="" style="width: 200px;height: 100px;padding-bottom: 0px;margin-top: 5px;margin-bottom: 5px;" v-on:click="partidoSelected=5">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 160px;padding-right: 0px;padding-left: 0px;padding-top: 5px;padding-bottom: 5px;" title="CLICK PARA VOTAR" v-on:click="mostrarModalBandera"><img src="assets/img/PDC.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 50px;margin-top: 10px;margin-right: 0px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;margin-left: 21px;">PDC</span></div>
+                            </div>
+                        </div>
+                        <div class="col"></div>
+                    </div>
                     <div class="row float-left d-xl-flex justify-content-xl-start" style="width: 1130px;">
-                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;">
-                            <div class="card shadow border-left-primary" v-for="dipu in diputados" v-show="dipu.partido.nombre==&quot;ARENA&quot;" style="width: 200px;height: 232px;padding-bottom: 0px;margin-top: 5px;margin-bottom: 5px;">
-                                <div class="card-body" style="width: 160px;padding-right: 0px;padding-left: 0px;"><img src="assets/img/arena.png" style="width: 125px;height: 75px;margin: 0px 0px 0px 50px;" v-show="dipu.partido.idPartido=1">
-                                    <div style="width: 160px;">
-                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;m&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;f&quot;"></div>
-                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><span class="d-sm-flex justify-content-sm-start" style="padding-bottom: 5px;font-size: 14px;"><strong>{{dipu.partido.nombre}}</strong></span><span class="d-lg-flex justify-content-lg-start" style="padding-top: 5px;font-size: 14px;">{{dipu.nombre+" "+dipu.apellido}}</span></div>
-                                    </div>
-                                    <div class="col offset-xl-4" style="width: auto;height: 60px;"><input class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-xl-center" type="checkbox" data-toggle="tooltip" data-bss-tooltip="" style="width: 30px;height: 30px;background: var(--red);color: var(--red);text-align: center;" title="ELEGIR"></div>
-                                </div>
-                            </div>
+                        <div class="col">
+                            <h4 class="text-center text-dark mb-4" style="font-family: 'Alfa Slab One', serif;font-size: 22px;margin-bottom: 0px;">Voto por Rostro</h4>
                         </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;">
-                            <div class="card shadow border-left-warning" v-for="dipu in diputados" v-show="dipu.partido.nombre==&quot;CD&quot;" style="width: 200px;height: 232px;margin: 5px 0px;">
-                                <div class="card-body" style="width: 160px;padding-right: 0px;padding-left: 0px;"><img src="assets/img/cd.png" style="width: 125px;height: 75px;margin: 0px 0px 0px 50px;" v-show="dipu.partido.idPartido=2">
-                                    <div style="width: 160px;">
-                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;m&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;f&quot;"></div>
-                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><span class="d-sm-flex justify-content-sm-start" style="padding-bottom: 5px;font-size: 14px;"><strong>{{dipu.partido.nombre}}</strong></span><span class="d-lg-flex justify-content-lg-start" style="padding-top: 5px;font-size: 14px;">{{dipu.nombre+" "+dipu.apellido}}</span></div>
+                    </div>
+                    <div class="row float-left d-xl-flex justify-content-xl-start" style="width: 1130px;">
+                        <div class="col-md-6 col-xl-3 mb-4" v-for="(dipu, index) in diputados" v-on:click="diputadoSelected=index;" v-if="dipu.idPartido.idPartido==1">
+                            <div class="card shadow border-left-primary" style="width: 220px;">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 220px;height: 160px;" v-on:click="mostrarModal" title="CLICK PARA VOTAR">
+                                    <div style="width: 160px;margin-top: -10px;margin-right: 4px;">
+                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;M&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;F&quot;"></div>
+                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><img src="assets/img/ni.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 14px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.nombres}}</strong></span><span class="d-lg-flex justify-content-lg-start justify-content-xl-center align-items-xl-end" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.apellidos}}</strong></span></div>
                                     </div>
-                                    <div class="col offset-xl-4" style="width: auto;height: 60px;"><input class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-xl-center" type="checkbox" data-toggle="tooltip" data-bss-tooltip="" style="width: 30px;height: 30px;background: var(--red);color: var(--red);text-align: center;" title="ELEGIR"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;">
-                            <div class="card shadow border-left-info" v-for="dipu in diputados" v-show="dipu.partido.nombre==&quot;NI&quot;" style="width: 200px;height: 232px;margin: 5px 0px;">
-                                <div class="card-body" style="width: 160px;padding-right: 0px;padding-left: 0px;"><img src="assets/img/ni.png" style="width: 125px;height: 75px;margin: 0px 0px 0px 50px;" v-show="dipu.partido.idPartido=5">
-                                    <div style="width: 160px;">
-                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;m&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;f&quot;"></div>
-                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><span class="d-sm-flex justify-content-sm-start" style="padding-bottom: 5px;font-size: 14px;"><strong>{{dipu.partido.nombre}}</strong></span><span class="d-lg-flex justify-content-lg-start" style="padding-top: 5px;font-size: 14px;">{{dipu.nombre+" "+dipu.apellido}}</span></div>
-                                    </div>
-                                    <div class="col offset-xl-4" style="width: auto;height: 60px;"><input class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-xl-center" type="checkbox" data-toggle="tooltip" data-bss-tooltip="" style="width: 30px;height: 30px;background: var(--red);color: var(--red);text-align: center;" title="ELEGIR"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;">
-                            <div class="card shadow border-left-danger" v-for="dipu in diputados" v-show="dipu.partido.nombre==&quot;FMLN&quot;" style="width: 200px;height: 232px;margin: 5px 0px;">
-                                <div class="card-body" style="width: 160px;padding-right: 0px;padding-left: 0px;"><img src="assets/img/fmln.png" style="width: 125px;height: 75px;margin: 0px 0px 0px 50px;" v-show="dipu.partido.idPartido=3">
-                                    <div style="width: 160px;">
-                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;m&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;f&quot;"></div>
-                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><span class="d-sm-flex justify-content-sm-start" style="padding-bottom: 5px;font-size: 14px;"><strong>{{dipu.partido.nombre}}</strong></span><span class="d-lg-flex justify-content-lg-start" style="padding-top: 5px;font-size: 14px;">{{dipu.nombre+" "+dipu.apellido}}</span></div>
-                                    </div>
-                                    <div class="col offset-xl-4" style="width: auto;height: 60px;"><input class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-xl-center" type="checkbox" data-toggle="tooltip" data-bss-tooltip="" style="width: 30px;height: 30px;background: var(--red);color: var(--red);text-align: center;" title="ELEGIR"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;">
-                            <div class="card shadow border-left-info" v-for="dipu in diputados" v-show="dipu.partido.nombre==&quot;GANA&quot;" style="width: 200px;height: 232px;margin: 5px 0px;">
-                                <div class="card-body" style="width: 160px;padding-right: 0px;padding-left: 0px;"><img src="assets/img/gana.png" style="width: 125px;height: 75px;margin: 0px 0px 0px 50px;" v-show="dipu.partido.idPartido=4">
-                                    <div style="width: 160px;">
-                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;m&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;f&quot;"></div>
-                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><span class="d-sm-flex justify-content-sm-start" style="padding-bottom: 5px;font-size: 14px;"><strong>{{dipu.partido.nombre}}</strong></span><span class="d-lg-flex justify-content-lg-start" style="padding-top: 5px;font-size: 14px;">{{dipu.nombre+" "+dipu.apellido}}</span></div>
-                                    </div>
-                                    <div class="col offset-xl-4" style="width: auto;height: 60px;"><input class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-xl-center" type="checkbox" data-toggle="tooltip" data-bss-tooltip="" style="width: 30px;height: 30px;background: var(--red);color: var(--red);text-align: center;" title="ELEGIR"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-6 col-xl-3 mb-4" style="width: 160px;padding: 0px;margin-bottom: 5px;">
-                            <div class="card shadow border-left-primary" v-for="dipu in diputados" v-show="dipu.partido.nombre==&quot;PCN&quot;" style="width: 200px;height: 232px;margin: 5px 0px;">
-                                <div class="card-body" style="width: 160px;padding-right: 0px;padding-left: 0px;"><img src="assets/img/pcn.png" style="width: 125px;height: 75px;margin: 0px 0px 0px 50px;" v-show="dipu.partido.idPartido=6">
-                                    <div style="width: 160px;">
-                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;m&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 70.594px;margin: 0px;" v-show="dipu.sexo==&quot;f&quot;"></div>
-                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><span class="d-sm-flex justify-content-sm-start" style="padding-bottom: 5px;font-size: 14px;"><strong>{{dipu.partido.nombre}}</strong></span><span class="d-lg-flex justify-content-lg-start" style="padding-top: 5px;font-size: 14px;">{{dipu.nombre+" "+dipu.apellido}}</span></div>
-                                    </div>
-                                    <div class="col offset-xl-4" style="width: auto;height: 60px;"><input class="d-sm-flex d-md-flex d-lg-flex d-xl-flex justify-content-xl-center" type="checkbox" data-toggle="tooltip" data-bss-tooltip="" style="width: 30px;height: 30px;background: var(--red);color: var(--red);text-align: center;" title="ELEGIR"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="w-100"></div>
                     </div>
-                    <div class="col"><a class="btn btn-danger btn-lg text-capitalize border rounded-pill d-block float-right" role="button" href="estadisticas.html">VOTAR</a></div>
+                    <div class="row float-left d-xl-flex justify-content-xl-start" style="width: 1130px;">
+                        <div class="col-md-6 col-xl-3 mb-4" v-for="(dipu, index) in diputados" v-on:click="diputadoSelected=index;" v-if="dipu.idPartido.idPartido==2">
+                            <div class="card shadow border-left-primary" style="width: 220px;">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 220px;height: 160px;" v-on:click="mostrarModal" title="CLICK PARA VOTAR">
+                                    <div style="width: 160px;margin-top: -10px;">
+                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;M&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;F&quot;"></div>
+                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><img src="assets/img/arena.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 14px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.nombres}}</strong></span><span class="d-lg-flex justify-content-lg-start justify-content-xl-center align-items-xl-end" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.apellidos}}</strong></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                    </div>
+                    <div class="row float-left d-xl-flex justify-content-xl-start" style="width: 1130px;">
+                        <div class="col-md-6 col-xl-3 mb-4" v-for="(dipu, index) in diputados" v-on:click="diputadoSelected=index;" v-if="dipu.idPartido.idPartido==3">
+                            <div class="card shadow border-left-primary" style="width: 220px;">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 220px;height: 160px;" v-on:click="mostrarModal" title="CLICK PARA VOTAR">
+                                    <div style="width: 160px;margin-top: -10px;">
+                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;M&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;F&quot;"></div>
+                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><img src="assets/img/fmln.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 14px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.nombres}}</strong></span><span class="d-lg-flex justify-content-lg-start justify-content-xl-center align-items-xl-end" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.apellidos}}</strong></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                    </div>
+                    <div class="row float-left d-xl-flex justify-content-xl-start" style="width: 1130px;">
+                        <div class="col-md-6 col-xl-3 mb-4" v-for="(dipu, index) in diputados" v-on:click="diputadoSelected=index;" v-if="dipu.idPartido.idPartido==4">
+                            <div class="card shadow border-left-primary" style="width: 220px;">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 220px;height: 160px;" v-on:click="mostrarModal" title="CLICK PARA VOTAR">
+                                    <div style="width: 160px;margin-top: -10px;">
+                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;M&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;F&quot;"></div>
+                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><img src="assets/img/gana.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 14px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.nombres}}</strong></span><span class="d-lg-flex justify-content-lg-start justify-content-xl-center align-items-xl-end" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.apellidos}}</strong></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                    </div>
+                    <div class="row float-left d-xl-flex justify-content-xl-start" style="width: 1130px;">
+                        <div class="col-md-6 col-xl-3 mb-4" v-for="(dipu, index) in diputados" v-on:click="diputadoSelected=index;" v-if="dipu.idPartido.idPartido==5">
+                            <div class="card shadow border-left-primary" style="width: 220px;">
+                                <div class="card-body" data-toggle="tooltip" data-bss-tooltip="" style="width: 220px;height: 160px;" v-on:click="mostrarModal" title="CLICK PARA VOTAR">
+                                    <div style="width: 160px;margin-top: -10px;">
+                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;M&quot;"><img src="assets/img/candidataM.jpg" style="width: 80px;height: 100px;margin: 0px;margin-top: 10px;" v-show="dipu.idUsuario.sexo==&quot;F&quot;"></div>
+                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><img src="assets/img/PDC.png" style="width: 85px;height: 52px;margin: 0px 0px 0px 50px;margin-left: 14px;"><span class="d-lg-flex justify-content-lg-start justify-content-xl-center" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.nombres}}</strong></span><span class="d-lg-flex justify-content-lg-start justify-content-xl-center align-items-xl-end" style="padding-top: 5px;font-size: 12px;text-align: center;"><strong>{{dipu.idUsuario.apellidos}}</strong></span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                    </div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="modalVotar">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="color: var(--light);background: var(--blue);">
+                                    <h4 class="modal-title"><strong>CANDIDATO SELECCIONADO</strong><br></h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col"><img class="d-xl-flex justify-content-xl-center align-items-xl-center" src="assets/img/ni.png" style="width: 150px;height: 100px;margin: 0px 0px 0px 50px;text-align: center;margin-left: 140px;" v-if="this.diputados[this.diputadoSelected].idPartido.idPartido==1"><input class="d-xl-flex align-items-xl-center" type="text" style="width: 250px;margin-left: 90px;font-size: 24px;border-style: none;text-align: center;font-style: normal;font-weight: bold;" v-model="this.diputados[this.diputadoSelected].idPartido.nombre"></div>
+                                    <div style="width: 275px;">
+                                        <div class="col float-left" style="padding-left: 0px;padding-right: 0px;width: 80px;"><img src="assets/img/candidatoH.png" style="width: 170px;height: 150px;margin: 0px;" v-show="this.diputados[this.diputadoSelected].idUsuario.sexo==&quot;M&quot;"><img src="assets/img/candidataM.jpg" style="width: 170px;height: 150px;margin: 0px;" v-show="this.diputados[this.diputadoSelected].idUsuario.sexo==&quot;F&quot;"></div>
+                                        <div class="col-xl-9 offset-xl-0 float-right" style="padding: 0px;padding-left: 0px;padding-right: 0px;width: 80px;height: 90px;margin-top: 10px;"><input type="text" style="width: 256px;border-style: none;font-size: 20px;font-weight: bold;" v-model="this.diputados[this.diputadoSelected].idUsuario.nombres"><input type="text" style="width: 256px;border-style: none;font-size: 20px;font-weight: bold;color: rgb(7,7,7);" v-model="this.diputados[this.diputadoSelected].idUsuario.apellidos"></div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="background: var(--blue);">
+                                    <p class="d-lg-flex justify-content-lg-start align-items-lg-end" id="idCantidadVotosRestantes" style="width: auto;margin-left: 0px;padding-left: 0px;padding-right: 51px;font-size: 15px;color: var(--light);"><strong>CANDIDATO SELECCIONADO</strong><br></p><a class="btn btn-secondary text-capitalize border rounded-pill d-block float-right" role="button" data-dismiss="modal">CANCELAR<br></a><a class="btn btn-danger text-capitalize border rounded-pill d-block float-right" role="button" v-on:click="votar">VOTAR</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" role="dialog" tabindex="-1" id="modalVotarBandera">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="padding: 0px;padding-top: 10px;height: 46px;background: var(--blue);color: var(--light);">
+                                    <h4 class="modal-title"></h4>
+                                    <p style="font-size: 24px;margin-left: 16px;"><strong>Voto por Bandera</strong></p><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col" style="height: 111px;" v-if="this.partidoSelected==1"><img class="d-xl-flex justify-content-xl-center align-items-xl-center" src="assets/img/ni.png" style="width: 132px;height: 80px;margin: 0px 0px 0px 50px;text-align: center;margin-left: 156px;">
+                                        <p style="text-align: center;font-size: 20px;margin: 0px;height: auto;font-weight: bold;">Nuevas Ideas</p>
+                                    </div>
+                                    <div class="col" style="height: 111px;" v-if="this.partidoSelected==2"><img class="d-xl-flex justify-content-xl-center align-items-xl-center" src="assets/img/arena.png" style="width: 132px;height: 80px;margin: 0px 0px 0px 50px;text-align: center;margin-left: 156px;">
+                                        <p style="text-align: center;font-size: 20px;margin: 0px;height: auto;font-weight: bold;">ARENA</p>
+                                    </div>
+                                    <div class="col" style="height: 111px;" v-if="this.partidoSelected==3"><img class="d-xl-flex justify-content-xl-center align-items-xl-center" src="assets/img/fmln.png" style="width: 132px;height: 80px;margin: 0px 0px 0px 50px;text-align: center;margin-left: 156px;">
+                                        <p style="text-align: center;font-size: 20px;margin: 0px;height: auto;font-weight: bold;">FMLN</p>
+                                    </div>
+                                    <div class="col" style="height: 111px;" v-if="this.partidoSelected==4"><img class="d-xl-flex justify-content-xl-center align-items-xl-center" src="assets/img/gana.png" style="width: 132px;height: 80px;margin: 0px 0px 0px 50px;text-align: center;margin-left: 156px;">
+                                        <p style="text-align: center;font-size: 20px;margin: 0px;height: auto;font-weight: bold;">GANA</p>
+                                    </div>
+                                    <div class="col" style="height: 111px;" v-if="this.partidoSelected==5"><img class="d-xl-flex justify-content-xl-center align-items-xl-center" src="assets/img/PDC.png" style="width: 132px;height: 80px;margin: 0px 0px 0px 50px;text-align: center;margin-left: 156px;">
+                                        <p style="text-align: center;font-size: 20px;margin: 0px;height: auto;font-weight: bold;">PDC</p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer" style="height: 51px;padding: 0px;background: var(--blue);"><a class="btn btn-secondary text-capitalize border rounded-pill d-block float-right" role="button" data-dismiss="modal" v-on:click="partidoSelected = 0">CANCELAR<br></a><a class="btn btn-danger text-capitalize border rounded-pill d-block float-right" role="button" v-on:click="votar">VOTAR</a></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <footer class="bg-white sticky-footer">
@@ -122,17 +204,18 @@
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="assets/js/vue-alcaldes.js"></script>
-    <script src="assets/js/vue-diputados.js"></script>
-    <script src="assets/js/vue-login.js"></script>
-    <script src="assets/js/vue-presidentes.js"></script>
-    <script src="assets/js/vue-usuarios.js"></script>
-    <script src="assets/js/vue-voto.js"></script>
+    <script src="assets/js/vueAlcaldes.js"></script>
+    <script src="assets/js/vueDiputados.js"></script>
+    <script src="assets/js/vueEstadisticas.js"></script>
+    <script src="assets/js/vueLogin.js"></script>
+    <script src="assets/js/vuePresidentes.js"></script>
+    <script src="assets/js/vueUsuarios.js"></script>
+    <script src="assets/js/vueVoto.js"></script>
 </body>
 
 </html>

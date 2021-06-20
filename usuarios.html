@@ -8,10 +8,12 @@
     <link rel="icon" type="image/png" sizes="153x160" href="assets/img/avatars/Logo_de_Gobierno_versiones-01-01.png">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alatsi">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="assets/css/Minimalistic--Responsive-Login.css">
 </head>
 
@@ -37,17 +39,19 @@
         <div class="d-flex flex-column" id="content-wrapper">
             <div>
                 <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button></div>
+                    <div class="container-fluid"><a class="navbar-brand justify-content-center align-items-center sidebar-brand m-0" id="nombreUsuario" href="#" style="width: 250px;height: 56px;padding-left: 5px;font-family: 'Alfa Slab One', serif;color: var(--blue);"></a>
+                        <p class="d-xl-flex align-items-xl-end" id="idDepMun" style="margin-right: 0px;padding-left: 0px;margin-left: 100px;color: var(--indigo);font-size: 20px;font-family: 'Alfa Slab One', serif;">Paragraph</p><button class="btn" id="myBtn" type="button" style="color: var(--blue);"><i class="fa fa-power-off" data-toggle="tooltip" data-bss-tooltip="" style="color: var(--red);width: 25px;height: 25px;font-size: 25px;" title="SALIR DEL SISTEMA"></i></button>
+                    </div>
                 </nav>
-                <div class="container-fluid" id="AdminUsuarios">
+                <div class="container-fluid" id="adminUser">
                     <div class="card shadow">
                         <div class="card-header py-3">
                             <div class="row">
-                                <div class="col-md-6 text-nowrap" style="padding: 7px;">
+                                <div class="col-md-6 text-nowrap" style="padding: 7px;font-size: 24px;font-family: Alatsi, sans-serif;text-align: center;">
                                     <p class="text-primary m-0 font-weight-bold" style="width: auto;height: 24px;text-align: left;">Información de Usuarios</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="text-md-right"><input class="form-control-sm float-right form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Search" v-model="textoBusqueda" style="width: 200px;height: 38px;"><a class="btn btn-sm text-left float-right" role="button" data-toggle="modal" data-bss-tooltip="" style="height: 38px;width: auto;padding: 8px;background-color: transparent;color: var(--blue);font-size: 16px;text-align: left;" v-on:click="mostrarAgregar" title="AGREGAR"><i class="fa fa-sign-in" style="color: var(--blue);"></i>&nbsp;Nuevo</a></div>
+                                    <div class="text-md-right"><input class="form-control-sm float-right form-control form-control-sm" type="search" aria-controls="dataTable" placeholder="Search" v-model="textoBusqueda" style="width: 200px;height: 38px;"></div><a class="btn btn-sm text-left float-right" role="button" data-toggle="modal" data-bss-tooltip="" style="height: 38px;width: auto;padding: 8px;background-color: transparent;color: var(--blue);font-size: 16px;text-align: left;" title="AGREGAR" v-on:click="mostrarAgregar"><i class="fa fa-sign-in" style="color: var(--blue);"></i>&nbsp;Nuevo</a>
                                 </div>
                             </div>
                         </div>
@@ -60,20 +64,21 @@
                                             <th>Apellido</th>
                                             <th>Sexo</th>
                                             <th>DUI</th>
-                                            <th>Fecha de Nacimiento</th>
                                             <th>Rol</th>
+                                            <th>Departamento</th>
+                                            <th>Municipio</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="(user, index) in usuarios" v-show="buscar(index)" v-on:click="usuarioSelected=index;" v-bind:class="{ 'font-weight-bold' : usuarioSelected==index }">
-                                            <td>{{user.nombre}}<br></td>
-                                            <td>{{user.apellido}}<br></td>
-                                            <td><i class="fa fa-female" data-toggle="tooltip" data-bss-tooltip="" style="font-size: 25px;color: var(--pink);" v-show="user.sexo==&quot;f&quot;" title="FEMENINO"></i><i class="fa fa-male" data-toggle="tooltip" data-bss-tooltip="" style="font-size: 25px;color: var(--blue);" v-show="user.sexo==&quot;m&quot;" title="MASCULINO"></i><br></td>
+                                            <td>{{user.nombres}}<br></td>
+                                            <td>{{user.apellidos}}<br></td>
+                                            <td><i class="fa fa-female" data-toggle="tooltip" data-bss-tooltip="" style="font-size: 25px;color: var(--pink);" v-show="user.sexo==&quot;F&quot;" title="FEMENINO"></i><i class="fa fa-male" data-toggle="tooltip" data-bss-tooltip="" style="font-size: 25px;color: var(--blue);" v-show="user.sexo==&quot;M&quot;" title="MASCULINO"></i><br></td>
                                             <td>{{user.dui}}<br></td>
-                                            <td>{{user.fechaNac}}<br></td>
-                                            <td>{{user.rol}}<br></td>
-                                            <td>&nbsp;<a data-toggle="modal" data-bss-tooltip="" style="padding: 5px;" v-on:click="mostrarModificar" title="MODIFICAR"><i class="fa fa-edit" style="color: #28a745;padding: 0px;"></i>&nbsp;</a><a data-toggle="modal" data-bss-tooltip="" style="padding: 5px;" v-on:click="mostrarEliminar" title="ELIMINAR">&nbsp;<i class="fa fa-trash-o" style="color: #dc3545;"></i></a>&nbsp;</td>
+                                            <td>{{user.idRol.rol}}<br></td>
+                                            <td>{{user.idMunicipio.idDepartamento.departamento}}<br></td>
+                                            <td>{{user.idMunicipio.municipio}}<br></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -87,132 +92,67 @@
                                     <h4 class="modal-title" style="color: #ffffff;">Agregar Usuario</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                                 </div>
                                 <div class="modal-body" style="background: rgb(248,249,252);">
+                                    <div class="alert alert-danger collapse" role="alert" id="miAlerta" style="width: auto;margin: 0px;padding-top: 12px;padding-right: 12px;padding-bottom: 12px;padding-left: 12px;"><span style="font-size: 14px;text-align: center;"><strong>{{ alerta.titulo }} :</strong>&nbsp;{{ alerta.mensaje }}.</span><i class="fa fa-close close" v-on:click="cerrarAlerta();"></i></div>
                                     <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: rgb(255,255,255);">Nombres:</span></div><input class="form-control" type="text">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: rgb(255,255,255);">Nombres:</span></div><input class="form-control" type="text" id="inputNombres" v-model="nuevoRegistro.nombres">
                                         <div class="input-group-append"></div>
                                     </div>
                                     <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: var(--white);background: var(--blue);">Apellidos:</span></div><input class="form-control" type="text">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: var(--white);background: var(--blue);">Apellidos:</span></div><input class="form-control" type="text" id="inputApellidos" v-model="nuevoRegistro.apellidos">
                                         <div class="input-group-append"></div>
                                     </div>
                                     <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: var(--white);">DUI:</span></div><input class="form-control" type="number">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: var(--white);">DUI:</span></div><input class="form-control" type="number" id="inputDui" v-model="nuevoRegistro.dui">
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;width: 224px;padding-right: 0px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Sexo</span></div><select class="form-control" style="width: auto;" v-model="nuevoRegistro.sexo">
+                                            <option value="M" selected="">MASCULINO</option>
+                                            <option value="F">FEMENINO</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;padding-left: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Rol:</span></div><select class="form-control" v-model="nuevoRegistro.idRol.idRol">
+                                            <option value="1">Administrador</option>
+                                            <option value="2">Usuario</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;padding-left: 10px;">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Departamento:</span></div><select class="form-control" v-model="dep">
+                                            <option value="1">Santa Ana</option>
+                                            <option value="2">Sonsonate</option>
+                                            <option value="3">San Salvador</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;padding-left: 10px;" v-if="dep==1">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Municipio:</span></div><select class="form-control" v-model="nuevoRegistro.idMunicipio.idMunicipio">
+                                            <option value="1">Santa Ana</option>
+                                            <option value="2">Metapan</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;padding-left: 10px;" v-if="dep==2">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Municipio:</span></div><select class="form-control" id="inputMun" v-model="nuevoRegistro.idMunicipio.idMunicipio">
+                                            <option value="3">Izalco</option>
+                                        </select>
+                                        <div class="input-group-append"></div>
+                                    </div>
+                                    <div class="input-group" style="padding: 10px;padding-left: 10px;" v-if="dep==3">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Municipio:</span></div><select class="form-control" id="inputMun2" v-model="nuevoRegistro.idMunicipio.idMunicipio">
+                                            <option value="4">Soyapango</option>
+                                            <option value="5">Mejicanos</option>
+                                        </select>
                                         <div class="input-group-append"></div>
                                     </div>
                                     <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: var(--white);">Fecha Nac:</span></div><input class="form-control" type="text">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col" style="width: 230px;padding-right: 0px;">
-                                            <div class="input-group" style="padding: 10px;width: 224px;padding-right: 0px;">
-                                                <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Sexo</span></div><select class="form-control" style="width: auto;">
-                                                    <option value="m" selected="">MASCULINO</option>
-                                                    <option value="f">FEMENINO</option>
-                                                </select>
-                                                <div class="input-group-append"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="input-group" style="padding: 10px;padding-left: 0px;">
-                                                <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--blue);color: var(--white);">Rol</span></div><select class="form-control">
-                                                    <option value="0">VOTANTE</option>
-                                                    <option value="1">ADMINISTRADOR</option>
-                                                </select>
-                                                <div class="input-group-append"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: var(--white);">Password:</span></div><input class="form-control" type="text">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer" style="background: var(--light);"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal" style="background: var(--secondary);">Cancelar</button><a class="btn btn-primary btn-sm" role="button" data-dismiss="modal" style="margin: 0px 0px 0px 10px;background: var(--blue);" data-toggle="modal">AGREGAR</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" role="dialog" tabindex="-1" id="modalModificar" style="color: #f0f9ff;">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header" style="color: var(--blue);background: var(--green);">
-                                    <h4 class="modal-title" style="color: #ffffff;">Modificar Usuario</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                </div>
-                                <div class="modal-body" style="background: rgb(248,249,252);">
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--green);color: rgb(255,255,255);">Nombres:</span></div><input class="form-control" type="text" v-model="this.usuarios[this.usuarioSelected].nombre">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: var(--white);background: var(--green);">Apellidos:</span></div><input class="form-control" type="text" v-model="this.usuarios[this.usuarioSelected].apellido">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--green);color: var(--white);">DUI:</span></div><input class="form-control" type="number" v-model="this.usuarios[this.usuarioSelected].dui">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--green);color: var(--white);">Fecha Nac:</span></div><input class="form-control" type="text" v-model="this.usuarios[this.usuarioSelected].fechaNac">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col" style="width: 230px;padding-right: 0px;">
-                                            <div class="input-group" style="padding: 10px;width: 224px;padding-right: 0px;">
-                                                <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--success);color: var(--white);">Sexo</span></div><select class="form-control" v-model="this.usuarios[this.usuarioSelected].sexo" style="width: auto;">
-                                                    <option value="m" selected="">MASCULINO</option>
-                                                    <option value="f">FEMENINO</option>
-                                                </select>
-                                                <div class="input-group-append"></div>
-                                            </div>
-                                        </div>
-                                        <div class="col" style="padding: 0px;">
-                                            <div class="input-group" style="padding: 10px;padding-left: 0px;">
-                                                <div class="input-group-prepend"><span class="input-group-text" style="width: auto;background: var(--success);color: var(--white);">Rol</span></div><select class="form-control" v-model="this.usuarios[this.usuarioSelected].rol">
-                                                    <option value="0">VOTANTE</option>
-                                                    <option value="1">ADMINISTRADOR</option>
-                                                </select>
-                                                <div class="input-group-append"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--green);color: var(--white);">Password:</span></div><input class="form-control" type="text" v-model="this.usuarios[this.usuarioSelected].password">
+                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--blue);color: var(--white);">Contraseña:</span></div><input class="form-control" type="text" id="inputContrasenia" v-model="nuevoRegistro.contrasenia">
                                         <div class="input-group-append"></div>
                                     </div>
                                 </div>
-                                <div class="modal-footer" style="background: var(--light);"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal" style="background: var(--secondary);">Cancelar</button><a class="btn btn-primary btn-sm" role="button" data-dismiss="modal" style="margin: 0px 0px 0px 10px;background: var(--green);" data-toggle="modal">MODIFICAR</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" role="dialog" tabindex="-1" id="modalEliminar" style="color: #f0f9ff;">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header" style="color: var(--blue);background: var(--red);">
-                                    <h4 class="modal-title" style="color: #ffffff;">Eliminar Usuario</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                </div>
-                                <div class="modal-body" style="background: rgb(248,249,252);">
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--red);color: rgb(255,255,255);">Nombre:</span></div><input class="form-control" type="text" v-model="this.usuarios[this.usuarioSelected].nombre" style="font-family: Nunito, sans-serif;background: rgb(248,249,252);" disabled="">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: rgb(255,255,255);background: var(--red);">Apellido:</span></div><input class="form-control" type="text" v-model="this.usuarios[this.usuarioSelected].apellido" style="background: rgb(248,249,252);" disabled="">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--red);color: var(--white);">DUI:</span></div><input class="form-control" type="text" v-model="this.usuarios[this.usuarioSelected].dui" style="background: rgb(248,249,252);" disabled="">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;color: rgb(255,255,255);background: var(--red);">Sexo:</span></div><input class="form-control" type="text" v-show="this.usuarios[this.usuarioSelected].sexo==&quot;m&quot;" placeholder="MASCULINO" disabled="" style="background: rgb(248,249,252);"><input class="form-control" type="text" v-show="this.usuarios[this.usuarioSelected].sexo==&quot;f&quot;" placeholder="FEMENINO" disabled="" style="background: rgb(248,249,252);">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                    <div class="input-group" style="padding: 10px;">
-                                        <div class="input-group-prepend"><span class="input-group-text" style="width: 100px;background: var(--red);color: rgb(255,255,255);">Rol:</span></div><input class="form-control" type="text" v-model="this.usuarios[this.usuarioSelected].rol" style="background: rgb(248,249,252);" disabled="">
-                                        <div class="input-group-append"></div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer" style="background: var(--light);"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal" style="background: var(--secondary);">Cancelar</button><a class="btn btn-primary btn-sm" role="button" data-dismiss="modal" style="margin: 0px 0px 0px 10px;background: #c30f04;" data-toggle="modal">Eliminar</a></div>
+                                <div class="modal-footer" style="background: var(--light);"><button class="btn btn-danger btn-sm" type="button" data-dismiss="modal" style="background: var(--secondary);">Cancelar</button><a class="btn btn-primary btn-sm" role="button" style="margin: 0px 0px 0px 10px;background: var(--blue);" v-on:click="crear">AGREGAR</a></div>
                             </div>
                         </div>
                     </div>
@@ -223,21 +163,22 @@
                     <div class="text-center my-auto copyright"><span>Copyright © TPI 2021</span></div>
                 </div>
             </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
     <script src="assets/js/bs-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="assets/js/theme.js"></script>
-    <script src="assets/js/vue-alcaldes.js"></script>
-    <script src="assets/js/vue-diputados.js"></script>
-    <script src="assets/js/vue-login.js"></script>
-    <script src="assets/js/vue-presidentes.js"></script>
-    <script src="assets/js/vue-usuarios.js"></script>
-    <script src="assets/js/vue-voto.js"></script>
+    <script src="assets/js/vueAlcaldes.js"></script>
+    <script src="assets/js/vueDiputados.js"></script>
+    <script src="assets/js/vueEstadisticas.js"></script>
+    <script src="assets/js/vueLogin.js"></script>
+    <script src="assets/js/vuePresidentes.js"></script>
+    <script src="assets/js/vueUsuarios.js"></script>
+    <script src="assets/js/vueVoto.js"></script>
 </body>
 
 </html>
