@@ -1,3 +1,9 @@
+PRESENTADO POR:
+Aragón Rugamas, Alejandro José			AR17092
+Avalos Serrano, Cristhian Vladimir 			AS16018
+Guardado Flores, Fernando Alexis			GF14013
+Lucha Martinez, Elmer David 				LM12040
+
 # TPI
 El BackEnd se encuentra en https://github.com/aragon-598/eleccionesback-docker
 
